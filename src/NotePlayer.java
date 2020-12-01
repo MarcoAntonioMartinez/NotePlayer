@@ -1,6 +1,5 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -16,9 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-//time to remove radio button code after I've done the code to play an instrument using a selection from the list
-//use getSelectedIndex to play the instrument that is selected in the list
-
+//this is branch with combo boxes
 public class NotePlayer extends JFrame implements ActionListener {
 
 	//user-defined serial version UID
@@ -32,8 +29,8 @@ public class NotePlayer extends JFrame implements ActionListener {
 	//list to hold the instruments
 	private static JList<String> instrList;	
 	
+	//the button used to play the note of an instrument
 	private static JButton play;
-	
 	
 	
 	//notes object to play notes
@@ -62,7 +59,7 @@ public class NotePlayer extends JFrame implements ActionListener {
 	public static String[] instrArray = new String[INSTR_MAX];
 	
 	
-	/*
+	/* create the gui
 	 * 
 	 * 
 	 */
@@ -77,15 +74,13 @@ public class NotePlayer extends JFrame implements ActionListener {
 		play.addActionListener(this);
 		
 		p1 = new JPanel();
-		//p1.setLayout(new BorderLayout(11,11));
 		add(p1,BorderLayout.LINE_END);
 		
 		p1.add(play, BorderLayout.LINE_END);
 		
 		
 		p2 = new JPanel();
-		p2.setLayout(new BorderLayout(11,11));
-		//p2.setLayout(new GridLayout(2, 8, 10, 8));
+		p2.setLayout(new BorderLayout(11,11));		
 		add(p2,BorderLayout.CENTER);
 		
 		//list of all the instruments/sounds
@@ -97,7 +92,6 @@ public class NotePlayer extends JFrame implements ActionListener {
 		instrList.addListSelectionListener(new ListSelectionListener(){
 			@Override
 			public void valueChanged(ListSelectionEvent e) {
-				//change list index to be created with data type that getSelectedIndex returns
 				int listIndex = instrList.getSelectedIndex();
 				instrument  = listIndex;		
 		
@@ -110,8 +104,7 @@ public class NotePlayer extends JFrame implements ActionListener {
 		JScrollPane instrScroll = new JScrollPane(instrList);
 
 	    p2.add(instrScroll, BorderLayout.CENTER);    
-		//p2.add(instrScroll);
-		
+				
 		//set up the gui to be visible
 		pack();
 		setSize(350,350);
@@ -151,7 +144,7 @@ public class NotePlayer extends JFrame implements ActionListener {
 		
 	}
 	
-	
+	//make it so when the play button is pushed it plays the selected instrument in the scrollpane
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
