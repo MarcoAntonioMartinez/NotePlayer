@@ -1,3 +1,4 @@
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -8,9 +9,11 @@ import java.util.Scanner;
 
 import javax.sound.midi.MidiUnavailableException;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import javax.swing.JScrollPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -26,8 +29,14 @@ public class NotePlayer extends JFrame implements ActionListener {
 	
 	private static JPanel p2;
 	
+	private static JPanel p3;
+	
 	//list to hold the instruments
 	private static JList<String> instrList;	
+	
+	//combo box with the pianos
+	//(right now just with all the instruments)
+	private static JComboBox pianoCbx;
 	
 	//the button used to play the note of an instrument
 	private static JButton play;
@@ -99,12 +108,21 @@ public class NotePlayer extends JFrame implements ActionListener {
 		});
 			
 		//end
+		//added external jar in eclipse and laptop made a noise
 	
 		//scrollpane to hold instrList
 		JScrollPane instrScroll = new JScrollPane(instrList);
 
 	    p2.add(instrScroll, BorderLayout.CENTER);    
 				
+	    p3 = new JPanel();
+	    add(p3, BorderLayout.PAGE_END);
+	    
+	    pianoCbx = new JComboBox(instrArray);
+	    AutoCompleteDecorator.decorate(pianoCbx);
+	    
+	    p3.add(pianoCbx, BorderLayout.CENTER);
+	    
 		//set up the gui to be visible
 		pack();
 		setSize(350,350);
